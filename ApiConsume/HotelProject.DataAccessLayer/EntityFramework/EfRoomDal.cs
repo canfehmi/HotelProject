@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelProject.DataAccessLayer.EntityFramework
 {
-    internal class EfRoomDal:GenericRepository<Room>,IRoomDal
+    public class EfRoomDal:GenericRepository<Room>,IRoomDal
     {
         public EfRoomDal(Context context):base(context) 
         { 
