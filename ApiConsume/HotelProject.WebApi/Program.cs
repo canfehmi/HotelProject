@@ -34,6 +34,9 @@ namespace HotelProject.WebApi
             builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
             builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 
+            builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+            builder.Services.AddScoped<IAboutService, AboutManager>();
+
             builder.Services.AddAutoMapper(typeof(Program));
 
             builder.Services.AddCors(opt =>
