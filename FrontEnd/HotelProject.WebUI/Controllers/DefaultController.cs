@@ -33,7 +33,7 @@ namespace HotelProject.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createNewsDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:63111/api/Subscribe", content);
+            var responseMessage = await client.PostAsync("http://localhost:5129/api/Subscribe", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

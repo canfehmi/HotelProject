@@ -4,12 +4,37 @@
 }
 
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
+
+@await Component.InvokeAsync("_HeadPartial")
 <body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        @await Component.InvokeAsync("_SpinnerPartial")
+        <!-- Spinner End -->
+        <!-- Header Start -->
+        @await Component.InvokeAsync("_NavbarPartial")
+        <!-- Header End -->
+        <!-- Booking Cover Start -->
+        @await Component.InvokeAsync("_BookingCoverPartial")
+        <!-- Booking End -->
+        <!-- Carousel Start -->
+        @await Component.InvokeAsync("_ReservationPartial")
+        <!-- Carousel End -->
+        <!-- Booking Start -->
+        @await Html.PartialAsync("AddBooking")
+        <!-- Booking End -->
+        <!-- Newsletter Start -->
+        @await Html.PartialAsync("/Views/Default/_NewsPartial.cshtml")
+        <!-- Newsletter Start -->
+        <!-- Footer Start -->
+        @await Component.InvokeAsync("_FooterPartial")
+        <!-- Footer End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    @await Component.InvokeAsync("_ScriptsPartial")
 </body>
+
 </html>
