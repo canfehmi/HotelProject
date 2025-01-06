@@ -1,0 +1,30 @@
+﻿@model List<RapidApiConsume.Models.ExchangeViewModel.Exchange_Rates>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<link href="c:\users\fhm\source\repos\hotelproject\frontend\hotelproject.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" />
+<link href="c:\users\fhm\source\repos\hotelproject\frontend\hotelproject.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="c:\users\fhm\source\repos\hotelproject\frontend\hotelproject.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" rel="stylesheet" />
+<link href="c:\users\fhm\source\repos\hotelproject\frontend\hotelproject.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.css" rel="stylesheet" />
+
+<div class="container">
+    <br /><br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>#</th>
+            <th>#</th>
+            <th>#</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.currency</td>
+                <td>@item.exchange_rate_buy</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>
