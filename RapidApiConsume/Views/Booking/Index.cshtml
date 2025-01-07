@@ -1,8 +1,9 @@
-﻿@model List<RapidApiConsume.Models.ExchangeViewModel.Exchange_Rates>
+﻿@model List<RapidApiConsume.Models.BookingApiViewModel.Data.Hotel>
 @{
     Layout = null;
+    int count = 1;
 }
-<!DOCTYPE html>
+
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
 <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
@@ -13,18 +14,19 @@
     <table class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
+            <th>Otel Adı</th>
+            <th>Otel Puanı</th>
+            <th>Detaylar</th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.currency</td>
-                <td>@item.exchange_rate_buy</td>
-                <td></td>
-                <td></td>
+                <td>@count</td>
+                <td>@item.property.name</td>
+                <td>@item.property.reviewScore</td>
+                <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
             </tr>
+            count++;
         }
     </table>
 </div>
