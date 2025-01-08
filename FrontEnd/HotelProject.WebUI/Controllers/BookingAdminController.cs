@@ -17,7 +17,7 @@ namespace HotelProject.WebUI.Controllers
         public async Task< IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5129/api/Booking");
+            var responseMessage = await client.GetAsync("http://localhost:63111/api/Booking");
             if(responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -26,12 +26,12 @@ namespace HotelProject.WebUI.Controllers
             }
             return View();
         }
-        public async Task<IActionResult> ApprovedReservation(int id)
+        public async Task<IActionResult> ApprovedReservation(int id, ApprovedReservationDto approvedReservationDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(approvedReservationDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("http://localhost:5129/api/Booking", content);
+            var responseMessage = await client.PutAsync("http://localhost:63111/api/Booking", content);
             if(responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

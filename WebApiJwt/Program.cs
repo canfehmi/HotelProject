@@ -19,14 +19,15 @@ namespace WebApiJwt
             builder.Services.AddSwaggerGen();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
             {
-                opt.RequireHttpsMetadata=false;
+                opt.RequireHttpsMetadata=true;
                 opt.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidIssuer = "http://localhost",
-                    ValidAudience= "http://localhost",
-                    IssuerSigningKey= new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aspnetcoreapiapi")),
+                    ValidIssuer = "https://localhost",
+                    ValidAudience= "https://localhost",
+                    IssuerSigningKey= new SymmetricSecurityKey(Encoding.UTF8.GetBytes("uzun-ve-guclu-bir-anahtar-olduburasi")),
                     ValidateIssuerSigningKey=true,
-                    ValidateLifetime=true
+                    ValidateLifetime=true,
+                    ClockSkew= TimeSpan.Zero
                 };
             });
 
@@ -40,7 +41,7 @@ namespace WebApiJwt
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
