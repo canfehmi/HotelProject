@@ -30,11 +30,11 @@ namespace HotelProject.WebUI.Controllers
         public async Task<IActionResult> UpdateRoom(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:63111/api/About/{id}");
+            var responseMessage = await client.GetAsync($"http://localhost:63111/api/Room/{id}");
             if(responseMessage.IsSuccessStatusCode)
             {
                 var jsonData= await responseMessage.Content.ReadAsStringAsync();
-                var values=JsonConvert.DeserializeObject<ResultRoomDto>(jsonData);
+                var values=JsonConvert.DeserializeObject<UpdateRoomDto>(jsonData);
                 return View(values);
             }
             return View();
@@ -42,10 +42,11 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateRoom(UpdateRoomDto dto)
         {
+            dto.Wifi = "Var";
             var client = _httpClientFactory.CreateClient();
             var jsonData= JsonConvert.SerializeObject(dto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("http://localhost:63111/api/About", content);
+            var responseMessage = await client.PutAsync("http://localhost:63111/api/Room", content);
             if(responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -60,13 +61,24 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> NewRoom(CreateRoomDto dto)
         {
+            dto.Wifi = "Var";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(dto);
             StringContent content= new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:63111/api/About",content);
+            var responseMessage = await client.PostAsync("http://localhost:63111/api/Room",content);
             if(responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public async Task< IActionResult> DeleteRoom(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"http://localhost:63111/api/Room/{id}");
+            if(responseMessage.IsSuccessStatusCode) 
+            { 
+                return RedirectToAction("Index"); 
             }
             return View();
         }
